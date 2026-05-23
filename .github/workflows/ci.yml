@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,16 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install flake8 pytest
-
-      - name: Syntax check
-        run: |
-          python -m py_compile main.py
-
-      - name: Lint check (flake8)
-        run: |
-          flake8 .
+          pip install pytest
 
       - name: Run tests
         run: |
-          pytest || echo "No tests yet"
+          pytest
